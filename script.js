@@ -32,38 +32,35 @@ function convertValues() {
     }
 
 
-convertButton.addEventListener("click", convertValues)
+    convertButton.addEventListener("click", convertValues)
 }
 
-currencySelect.addEventListener("change", changeCurrency) 
-    
-    function changeCurrency() {
-        const currencyName = document.getElementById("currency-name")
-        const currencyImg = document.querySelector(".currency-img")
 
-        if (currencySelect.value == "dolar") {
-            currencyName.innerHTML = "Dólar Americano"
-            currencyImg.src = ""
-        }
+function changeCurrency() {
+    const currencyName = document.getElementById("currency-name")
+    const currencyImg = document.querySelector(".currency-img")
 
-        if (currencySelect.value == "euro") {
-            currencyName.innerHTML = "Euro"
-            currencyImg.src="./assets/imgeuro.png"
-        }
+    if (currencySelect.value == "dolar") {
+        currencyName.innerHTML = "Dólar Americano"
+        currencyImg.src = "./assets/estados-unidos (1) 1.png"
+    }
 
-       
+    if (currencySelect.value == "euro") {
+        currencyName.innerHTML = "Euro"
+        currencyImg.src = "./assets/img-euro.png"
+    }
 
 
 
 
-        currencySelect.addEventListener("change", changeCurrency)
+
 }
 
 
 
 
 
-
+currencySelect.addEventListener("change", changeCurrency)
 convertButton.addEventListener("click", convertValues)
 
 
