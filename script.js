@@ -1,13 +1,17 @@
 const convertButton = document.querySelector(".convertButton")
 const currencySelect = document.querySelector(".currency-select")
 
-function convertValues() {
+
+    const convertValues = async () => {
     const inputCurrencyValue = document.querySelector(".input-currency").value
     const currencyValueToConvert = document.querySelector(".currency-value-to-convert")
     const currencyValueConverted = document.querySelector(".currency-value")
 
-    const dolarToday = 5.2
-    const euroToday = 6.2
+    const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL").then(response => response.json())
+
+    const dolar = data.USDBRL.high
+    const euro = data.EURBRL.high
+    const btc = data.BTCBRL.high
 
 
     currencyValueToConvert.innerHTML = new Intl.NumberFormat("pt-BR", {
@@ -21,19 +25,29 @@ function convertValues() {
         currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD"
-        }).format(inputCurrencyValue / dolarToday)
+        }).format(inputCurrencyValue / dolar)
     }
 
     if (currencySelect.value == "euro") {
         currencyValueConverted.innerHTML = new Intl.NumberFormat("de-De", {
             style: "currency",
             currency: "EUR"
-        }).format(inputCurrencyValue / euroToday)
+        }).format(inputCurrencyValue / euro)
+    }
+
+    if (currencySelect.value == "bitcoin") {
+        currencyValueConverted.innerHTML = new Intl.NumberFormat ("pt-BR", {
+            minimumFractionDigits: 8,
+            maximumFractionDigits: 8,
+            style: "currency",
+            currency: "BTC"
+        }).format(inputCurrencyValue / btc)
     }
 
 
     convertButton.addEventListener("click", convertValues)
 }
+
 
 
 function changeCurrency() {
@@ -50,13 +64,15 @@ function changeCurrency() {
         currencyImg.src = "./assets/img-euro.png"
     }
 
+    if (currencySelect.value == "bitcoin") {
+        currencyName.innerHTML = "Bitcoin"
+        currencyImg.src = "./assets/bitcoin 1.png" 
+}
 
 
 
 
 }
-
-
 
 
 

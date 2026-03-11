@@ -1,110 +1,286 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "Sirin Stencil", sans-serif;
-    outline: none;
+@import url('https://fonts.googleapis.com/css2?family=Sirin+Stencil&family=DM+Mono:wght@300;400;500&display=swap');
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0b0c10;
+  --card: #13141a;
+  --border: rgba(255, 255, 255, 0.07);
+  --gold: #f0b429;
+  --gold-dim: rgba(240, 180, 41, 0.12);
+  --green: #10b981;
+  --text: #f0f0f5;
+  --muted: #5a5a72;
+  --radius: 18px;
 }
 
 body {
-    background-color: #83bfe7;
+  font-family: 'DM Mono', monospace;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px 48px;
+  gap: 32px;
 
+  /* subtle grid */
+  background-image:
+    linear-gradient(rgba(240,180,41,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240,180,41,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* glow orb top-right */
+body::after {
+  content: '';
+  position: fixed;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(240,180,41,0.07) 0%, transparent 70%);
+  top: -160px; right: -160px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== HEADER ===== */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 480px;
+  animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) both;
 }
 
 .img-logo {
-    width: 300px;
-    display: block;
-    margin: 20px auto;
+  height: 200px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(240,180,41,0.35));
 }
 
+/* ===== MAIN CARD ===== */
 main {
-    width: 375px;
-    background-color: rgb(85, 136, 184);
-    border-radius: 20px;
-    margin: 0 auto;
-    padding: 44px 24px 23px;
+  position: relative;
+  z-index: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: fadeUp 0.6s 0.1s cubic-bezier(0.16,1,0.3,1) both;
+
+  /* top shimmer line */
+  overflow: hidden;
 }
 
+main::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(240,180,41,0.5), transparent);
+}
+
+/* ===== LABELS ===== */
 label {
-    color:#f2f3f5;
-    font-weight: 400;
-    display: block;
-    margin-top:15px ;
-    margin-left:5px;
-    font-size:14px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-select, input {
-    background: #FFFFFF;
-    border: 1px solid #BBBBBB;
-    border-radius: 4px;
-    height: 48px;
-    width: 100%;
-    margin-bottom: 24px;
-    padding-left: 18px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #555555;
-    cursor: pointer;
+label b {
+  color: var(--gold);
+  font-style: normal;
 }
 
-button {
-    width: 100%;
-    border-radius: 5px;
-    background: #106db9;
-    color: #FFFFFF;
-    border: none;
-    display: block;
-    margin-top: 20px;
-    height: 48px;
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer; 
+/* ===== SELECTS ===== */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255,255,255,0.04) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a5a72' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 40px 12px 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
 }
 
-button:hover{
-    opacity: 0.8;
+select:focus, select:hover {
+  border-color: rgba(240,180,41,0.4);
+  box-shadow: 0 0 0 3px rgba(240,180,41,0.06);
 }
 
-button:active{
-    opacity: 0.6;
+select option {
+  background: #1a1b22;
+  color: var(--text);
 }
 
-section{
-    border: 1px solid #004781;
-    border-radius: 20px;
-    margin-top: 36px;
-    padding: 12px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.arrow-img {
-    margin: 15px 0;
-
+/* ===== INPUT ===== */
+.input-currency {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-family: 'Sirin Stencil', serif;
+  font-size: 26px;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+  letter-spacing: -0.5px;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+.input-currency::placeholder {
+  color: rgba(255,255,255,0.15);
+}
+
+.input-currency:focus {
+  border-color: rgba(240,180,41,0.45);
+  box-shadow: 0 0 0 3px rgba(240,180,41,0.07);
+}
+
+/* ===== CONVERT BUTTON ===== */
+.convertButton {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #f0b429, #f97316);
+  border: none;
+  border-radius: 14px;
+  font-family: 'Sirin Stencil', serif;
+  font-size: 16px;
+  color: #0b0c10;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s;
+  position: relative;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.convertButton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.convertButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(240,180,41,0.32);
+}
+
+.convertButton:hover::after { opacity: 1; }
+.convertButton:active { transform: translateY(0); opacity: 0.85; }
+
+/* ===== RESULT SECTION ===== */
+section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 18px;
+  margin-top: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(240,180,41,0.2), transparent);
+}
+
+/* ===== CURRENCY BOX ===== */
 .currency-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.currency-box img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  box-shadow: 0 0 16px rgba(240,180,41,0.1);
+  transition: box-shadow 0.3s;
+}
+
+.currency-box img:hover {
+  box-shadow: 0 0 22px rgba(240,180,41,0.25);
 }
 
 .currency {
-    color: #ffffff;
-    font-size: 14px;
-    
-
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-.currency-value, .currency-value-to-convert {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 700;
+.currency-value-to-convert {
+  font-family: 'Sirin Stencil', serif;
+  font-size: 20px;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
 
+.currency-value {
+  font-family: 'Sirin Stencil', serif;
+  font-size: 20px;
+  color: var(--gold);
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 18px rgba(240,180,41,0.35);
+}
+
+/* ===== ARROW ===== */
+.arrow-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  opacity: 0.6;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(59,130,246,0.4));
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 
