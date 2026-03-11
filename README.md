@@ -17,7 +17,7 @@ Conversor de moedas em tempo real com suporte a Dólar, Euro e Bitcoin, desenvol
 
 ## 🖥️ Preview
 
-![Preview do projeto](./assets/preview.png)
+![Preview do projeto](./assets/assetspreview.png)
 
 ---
 
