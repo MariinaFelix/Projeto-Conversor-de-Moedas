@@ -26,7 +26,7 @@ Conversor de moedas em tempo real com suporte a Dólar, Euro e Bitcoin, desenvol
 - HTML5
 - CSS3
 - JavaScript (ES6+)
-- [AwesomeAPI](https://economia.awesomeapi.com.br/) — cotações em tempo real
+- [AwesomeAPI](https://economia.awesomeapi.com.br) — cotações em tempo real
 
 ---
 
