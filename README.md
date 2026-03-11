@@ -54,4 +54,4 @@ Retorna a cotação mais recente do Dólar, Euro e Bitcoin em relação ao Real.
 ## 👨‍💻 Autor
 
 Feito com 💛 por **Marina Felix**  
-[![GitHub](https://img.shields.io/badge/GitHub-seu--usuario-181717?style=flat&logo=github)](https://github.com/mariinafelix)
+[![GitHub](https://img.shields.io/badge/GitHub-MarinaFelix-181717?style=flat&logo=github)](https://github.com/mariinafelix)
